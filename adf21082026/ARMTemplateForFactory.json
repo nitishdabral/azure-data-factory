@@ -180,7 +180,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tumbling_5min')]",
+			"name": "[concat(parameters('factoryName'), '/tumbling_5mins')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -197,7 +197,7 @@
 				"typeProperties": {
 					"frequency": "Minute",
 					"interval": 5,
-					"startTime": "2026-08-21T22:32:00Z",
+					"startTime": "2026-08-21T17:11:00Z",
 					"delay": "00:00:00",
 					"maxConcurrency": 50,
 					"retryPolicy": {
