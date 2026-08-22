@@ -10,12 +10,6 @@
 		},
 		"ADLS_properties_typeProperties_url": {
 			"value": "https://storageaccount21082026.dfs.core.windows.net/"
-		},
-		"tumbling_5mins_properties_pipeline_parameters_windowstarttime": {
-			"value": "@{trigger().outputs.windowStartTime}"
-		},
-		"tumbling_5mins_properties_pipeline_parameters_windowendtime": {
-			"value": "@{trigger().outputs.windowEndTime}"
 		}
 	}
 }

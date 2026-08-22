@@ -14,14 +14,6 @@
 		"ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://storageaccount21082026.dfs.core.windows.net/"
-		},
-		"tumbling_5mins_properties_pipeline_parameters_windowstarttime": {
-			"type": "string",
-			"defaultValue": "@{trigger().outputs.windowStartTime}"
-		},
-		"tumbling_5mins_properties_pipeline_parameters_windowendtime": {
-			"type": "string",
-			"defaultValue": "@{trigger().outputs.windowEndTime}"
 		}
 	},
 	"variables": {
@@ -123,14 +115,6 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"modifiedDatetimeStart": {
-										"value": "@pipeline().parameters.windowstarttime",
-										"type": "Expression"
-									},
-									"modifiedDatetimeEnd": {
-										"value": "@pipeline().parameters.windowendtime",
-										"type": "Expression"
-									},
 									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
@@ -141,8 +125,7 @@
 							"sink": {
 								"type": "DelimitedTextSink",
 								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "PreserveHierarchy"
+									"type": "AzureBlobFSWriteSettings"
 								},
 								"formatSettings": {
 									"type": "DelimitedTextWriteSettings",
@@ -174,69 +157,16 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Filter1",
-						"type": "Filter",
-						"state": "Inactive",
-						"onInactiveMarkAs": "Succeeded",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"windowstarttime": {
-						"type": "string",
-						"defaultValue": "@trigger().outputs.windowStartTime"
-					},
-					"windowendtime": {
-						"type": "string",
-						"defaultValue": "@trigger().outputs.windowEndTime"
-					}
 				},
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/input_container')]",
 				"[concat(variables('factoryId'), '/datasets/output_container')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tumbling_5mins')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "Copy activity",
-						"type": "PipelineReference"
-					},
-					"parameters": {
-						"windowstarttime": "[parameters('tumbling_5mins_properties_pipeline_parameters_windowstarttime')]",
-						"windowendtime": "[parameters('tumbling_5mins_properties_pipeline_parameters_windowendtime')]"
-					}
-				},
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Minute",
-					"interval": 5,
-					"startTime": "2026-08-22T08:16:00Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Copy activity')]"
 			]
 		}
 	]
