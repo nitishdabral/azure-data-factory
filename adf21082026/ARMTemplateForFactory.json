@@ -103,11 +103,11 @@
 				"parameters": {
 					"start": {
 						"type": "string",
-						"defaultValue": "@{trigger().outputs.windowStartTime}"
+						"defaultValue": "@trigger().outputs.windowStartTime"
 					},
 					"end": {
 						"type": "string",
-						"defaultValue": "@{trigger().outputs.windowEndTime}"
+						"defaultValue": "@trigger().outputs.windowEndTime"
 					}
 				},
 				"annotations": []
