@@ -21,11 +21,11 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@pipeline().parameters.start",
+								"value": "@formatDateTime(pipeline().parameters.start,'yyyy-MM-ddTHH:mm:ssZ')",
 								"type": "Expression"
 							},
 							"modifiedDatetimeEnd": {
-								"value": "@pipeline().parameters.end",
+								"value": "@formatDateTime(pipeline().parameters.end,'yyyy-MM-ddTHH:mm:ssZ')",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*",
