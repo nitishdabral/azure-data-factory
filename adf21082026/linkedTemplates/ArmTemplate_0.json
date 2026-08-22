@@ -163,6 +163,16 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"start": {
+						"type": "string",
+						"defaultValue": "@trigger().outputs.windowStartTime"
+					},
+					"end": {
+						"type": "string",
+						"defaultValue": "@trigger().outputs.windowEndTime"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
