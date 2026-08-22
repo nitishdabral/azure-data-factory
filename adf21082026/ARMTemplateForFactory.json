@@ -14,6 +14,14 @@
 		"ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://storageaccount21082026.dfs.core.windows.net/"
+		},
+		"tumbling_5mins_properties_pipeline_parameters_windowstarttime": {
+			"type": "string",
+			"defaultValue": "@{trigger().outputs.windowStartTime}"
+		},
+		"tumbling_5mins_properties_pipeline_parameters_windowendtime": {
+			"type": "string",
+			"defaultValue": "@{trigger().outputs.windowEndTime}"
 		}
 	},
 	"variables": {
@@ -112,11 +120,11 @@
 				"parameters": {
 					"windowstarttime": {
 						"type": "string",
-						"defaultValue": "@triggeroutputs().windowstarttime"
+						"defaultValue": "@trigger().outputs.windowStartTime"
 					},
 					"windowendtime": {
 						"type": "string",
-						"defaultValue": "@triggeroutputs().windowendtime"
+						"defaultValue": "@trigger().outputs.windowEndTime"
 					}
 				},
 				"annotations": []
@@ -209,7 +217,10 @@
 						"referenceName": "Copy activity",
 						"type": "PipelineReference"
 					},
-					"parameters": {}
+					"parameters": {
+						"windowstarttime": "[parameters('tumbling_5mins_properties_pipeline_parameters_windowstarttime')]",
+						"windowendtime": "[parameters('tumbling_5mins_properties_pipeline_parameters_windowendtime')]"
+					}
 				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
