@@ -7,6 +7,10 @@
 			"pipelineReference": {
 				"referenceName": "Copy activity",
 				"type": "PipelineReference"
+			},
+			"parameters": {
+				"windowstarttime": "@triggeroutputs().windowstarttime",
+				"windowendtime": "@triggeroutputs().windowendtime"
 			}
 		},
 		"type": "TumblingWindowTrigger",
