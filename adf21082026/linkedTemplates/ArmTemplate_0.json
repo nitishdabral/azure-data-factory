@@ -183,11 +183,11 @@
 				"parameters": {
 					"windowstarttime": {
 						"type": "string",
-						"defaultValue": "@triggeroutputs.windowstarttime"
+						"defaultValue": "@trigger().outputs.windowStartTime"
 					},
 					"windowendtime": {
 						"type": "string",
-						"defaultValue": "@triggeroutputs.windowendtime"
+						"defaultValue": "@trigger().outputs.windowEndTime"
 					}
 				},
 				"annotations": []
