@@ -69,14 +69,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Filter1",
-				"type": "Filter",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
-				"userProperties": []
 			}
 		],
 		"parameters": {
