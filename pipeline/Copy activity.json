@@ -71,16 +71,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"windowstarttime": {
-				"type": "string",
-				"defaultValue": "@trigger().outputs.windowStartTime"
-			},
-			"windowendtime": {
-				"type": "string",
-				"defaultValue": "@trigger().outputs.windowEndTime"
-			}
-		},
 		"annotations": []
 	}
 }
