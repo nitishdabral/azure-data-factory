@@ -168,6 +168,37 @@
 				"[concat(variables('factoryId'), '/datasets/input_container')]",
 				"[concat(variables('factoryId'), '/datasets/output_container')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tumb_5mins')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "Copy activity",
+						"type": "PipelineReference"
+					},
+					"parameters": {}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 5,
+					"startTime": "2026-08-22T12:22:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Copy activity')]"
+			]
 		}
 	]
 }
